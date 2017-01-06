@@ -8,6 +8,7 @@ var sqrWid=128;
 var mine = new Image();
 mine.src="Minesweep.png";
 var bomb=[1,3];
+var blank=[0,0]
 var boomer=[];
 var randy=0;
 
@@ -20,7 +21,7 @@ if(isNaN(size)) {
 }
 
 //b
-//To ~55: creates bombs
+//23 to ~55: creates bombs
 //b
 bombCount=size*size/10;
 console.log(size);
@@ -66,11 +67,39 @@ while(c<size) {
   while(d<size) {
     var nearBombs=0;
     
-    if(!boomer[c] [d]) {
-      console.log("no");  
-    } else {
-      console.log("yes");
+    if(d>0 && boomer[c] [d-1]) {
+      nearBombs++;  
     }
+    if(d>0 && c>0 && boomer[c-1] [d-1]) {
+      nearBombs++;  
+    }
+    if(d>0 && c<size-1 && boomer[c+1] [d-1]) {
+      nearBombs++;  
+    }
+    if(c>0 && boomer[c-1] [d]) {
+      nearBombs++;  
+    }
+    if(c<size-1 && boomer[c+1] [d]) {
+      nearBombs++;  
+    }
+    if(c>0 && d<size && boomer[c-1] [d+1]) {
+      nearBombs++;  
+    }
+    if(d<size && boomer[c] [d+1]) {
+      nearBombs++;  
+    }
+    if(c<size-1 && d<size && boomer[c+1] [d+1]) {
+      nearBombs++;  
+    }
+    
+    console.log(nearBombs);
+    
+    //context.drawImage(      img,  cropX,    cropY,    cropWid,cropHit,X,        Y,           Wid,    Hit)
+    ctx.drawImage(mine, sqrWid*blank[0], sqrWid*blank[1], sqrWid, sqrWid, a*sqrWid, b*sqrWid/2, sqrWid, sqrWid/2);    
+    
+  
+      console.log(c + "," + d + " and "+ boomer[c+1]);  
+
     
     d++;
   }
