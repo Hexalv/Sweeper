@@ -1,0 +1,13 @@
+BODY {background: #123}
+A:link {color: #80FF00}
+A:visited {color: #FF00FF}
+H1 {font-size: 24pt; font-family: arial}
+H2 {font-size: 18pt; font-family: arial}
+H3 {font-size: 14pt; font-family: arial}    
+
+#game {
+  border: 2px solid green;
+  height: 750px;
+  width: 750px;
+  background-color: #121;
+}
