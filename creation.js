@@ -93,10 +93,38 @@ while(c<size) {
       nearBombs++;  
     }
     
+    var blip=[0,0];
+    
+    switch(nearBombs) {
+      
+      case 0:
+      blip=[0,0]
+      break;
+    
+      case 1:
+      blip=[1,0]
+      break;
+    
+      case 2:
+      blip=[2,0]
+      break;
+      
+      case 3:
+      blip=[0,1]
+      break;
+      
+      case 4:
+      blip=[1,1]
+      break;
+      
+      
+    
+    }
+    
     console.log(nearBombs);
     
     //context.drawImage(      img,  cropX,    cropY,    cropWid,cropHit,X,        Y,           Wid,    Hit)
-    //ctx.drawImage(mine, sqrWid*blank[0], sqrWid*blank[1], sqrWid, sqrWid, c*sqrWid, d*sqrWid/2, sqrWid, sqrWid/2);    
+    ctx.drawImage(mine, sqrWid*blank[0], sqrWid*blank[1], sqrWid, sqrWid, c*sqrWid, d*sqrWid/2, sqrWid, sqrWid/2);    
     
   
       console.log(c + "," + d + " and "+ boomer[c+1]);  
