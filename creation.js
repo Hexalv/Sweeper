@@ -10,7 +10,7 @@ var randy=0;
 var blip=[0,0];
 var nearBombs=[];
 var clicked=[];
-
+var outOfEight=0;
 
 //creates map
 function main() {
@@ -26,7 +26,8 @@ if(isNaN(size)) {
   alert("Illegal characters found. Default assumed: 12");
   size=12;
 }
-
+clicked=[size] [size];
+console.log(clicked);
 //b
 //23 to ~55: creates bombs
 //b
@@ -122,16 +123,61 @@ var ctx = can.getContext("2d");
 
 var f=Math.floor((event.clientX-10)/48);
 var e=Math.floor((event.clientY-10)/48);
-
-
+var g=e;
+var h=f;
   
     if(!boomer[f] [e]) {
-    
+    //Decides img to use per square
     switch(nearBombs[f] [e]) {
       
       case 0:
       blip=[2,3];
-      chain(e,f);
+      for(var i=0; i<8; i++) {
+        switch(i) { 
+        
+          case 0:
+          g=e+1;
+          h=f+1;
+          break;
+          
+          case 1:
+          g=e+1;
+          h=f;
+          break;
+          
+          case 2:
+          g=e+1;
+          h=f-1;
+          break;
+          
+          case 3:
+          g=e;
+          h=f+1;
+          break;
+          
+          case 4:
+          g=e;
+          h=f-1;
+          break;
+          
+          case 5:
+          g=e-1;
+          h=f+1;
+          break;
+          
+          case 6:
+          g=e-1;
+          h=f;
+          break;
+          
+          case 7:
+          g=e-1;
+          h=f-1;
+          break;
+        }
+        chain(g,h);
+      
+      }
       break;
     
       case 1:
@@ -184,19 +230,17 @@ var e=Math.floor((event.clientY-10)/48);
 function chain(e, f) {
 var can = document.getElementById("game");
 var ctx = can.getContext("2d");
-var g=e+1;
-var h=f+1;
-var drew=false;
 
-    
+
+
+  
+    if(!boomer[f] [e]) {
+    //Decides img to use per square
     switch(nearBombs[f] [e]) {
       
       case 0:
       blip=[2,3];
-      ctx.drawImage(mine, sqrWid*blip[0], sqrWid*blip[1], sqrWid, sqrWid, f*sqrWid, e*sqrWid/2, sqrWid, sqrWid/2);
-      drew=true;
-      chain(g,h);
-      drew=false;      
+      chain(e,f);
       break;
     
       case 1:
@@ -235,15 +279,11 @@ var drew=false;
     }
     
     
-    if(!drew) {
-      //context.drawImage(      img,  cropX,    cropY,    cropWid,cropHit,X,        Y,           Wid,    Hit)
-      ctx.drawImage(mine, sqrWid*blip[0], sqrWid*blip[1], sqrWid, sqrWid, f*sqrWid, e*sqrWid/2, sqrWid, sqrWid/2);
-    }
+    //context.drawImage(      img,  cropX,    cropY,    cropWid,cropHit,X,        Y,           Wid,    Hit)
+    ctx.drawImage(mine, sqrWid*blip[0], sqrWid*blip[1], sqrWid, sqrWid, f*sqrWid, e*sqrWid/2, sqrWid, sqrWid/2);  
 
 
+   }
 
 
 }
-
-
-
